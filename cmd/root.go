@@ -33,13 +33,14 @@ to quickly create a Cobra application.`,
 			return
 		}
 		filename := args[0]
+		fmt.Println("Parsing file: ", filename)
 
-		content, err := os.ReadFile(filename)
+		content, err := os.Open(filename)
 		if err != nil {
 			panic(err)
 		}
 
-		p, err := parser.Parse(string(content))
+		p, err := parser.Parse(content)
 		if err != nil {
 			panic(err)
 		}
