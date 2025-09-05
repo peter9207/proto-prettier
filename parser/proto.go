@@ -115,33 +115,6 @@ type OneofEntry struct {
 	Option *Option `| "option" @@`
 }
 
-type Scalar int
-
-const (
-	None Scalar = iota
-	Double
-	Float
-	Int32
-	Int64
-	Uint32
-	Uint64
-	Sint32
-	Sint64
-	Fixed32
-	Fixed64
-	SFixed32
-	SFixed64
-	Bool
-	String
-	Bytes
-)
-
-var scalarToString = map[Scalar]string{
-	None: "None", Double: "Double", Float: "Float", Int32: "Int32", Int64: "Int64", Uint32: "Uint32",
-	Uint64: "Uint64", Sint32: "Sint32", Sint64: "Sint64", Fixed32: "Fixed32", Fixed64: "Fixed64",
-	SFixed32: "SFixed32", SFixed64: "SFixed64", Bool: "Bool", String: "String", Bytes: "Bytes",
-}
-
 func (s Scalar) GoString() string { return scalarToString[s] }
 
 var stringToScalar = map[string]Scalar{

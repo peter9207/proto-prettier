@@ -37,7 +37,7 @@ func (f *Field) Output() string {
 		entries = append(entries, "repeated")
 	}
 
-	entries = append(entries, fmt.Sprintf("%s = %d", f.Type.Output(), f.Tag))
+	entries = append(entries, fmt.Sprintf("%s %s = %d", f.Type.Output(), f.Name, f.Tag))
 
 	return strings.Join(entries, " ")
 }
