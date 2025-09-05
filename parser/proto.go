@@ -85,22 +85,6 @@ type Method struct {
 	Options           []*Option `( "{" ( "option" @@ ";" )* "}" )?`
 }
 
-type EnumEntry struct {
-	Pos lexer.Position
-
-	Value  *EnumValue `  @@`
-	Option *Option    `| "option" @@`
-}
-
-type EnumValue struct {
-	Pos lexer.Position
-
-	Key   string `@Ident`
-	Value int    `"=" @( [ "-" ] Int )`
-
-	Options []*Option `( "[" @@ ( "," @@ )* "]" )?`
-}
-
 type Oneof struct {
 	Pos lexer.Position
 
@@ -132,13 +116,6 @@ func (s *Scalar) Parse(lex *lexer.PeekingLexer) error {
 	lex.Next()
 	*s = v
 	return nil
-}
-
-type MapType struct {
-	Pos lexer.Position
-
-	Key   *Type `"map" "<" @@`
-	Value *Type `"," @@ ">"`
 }
 
 func (p *Proto) Output() string {

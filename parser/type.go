@@ -1,6 +1,8 @@
 package parser
 
 import (
+	"fmt"
+
 	"github.com/alecthomas/participle/v2/lexer"
 )
 
@@ -12,10 +14,21 @@ type Type struct {
 	Reference string   `| @(Ident ( "." Ident )*)`
 }
 
+type MapType struct {
+	Pos lexer.Position
+
+	Key   *Type `"map" "<" @@`
+	Value *Type `"," @@ ">"`
+}
+
 func (t *Type) Output() string {
 
 	if t.Scalar != None {
 		return scalarOutput[t.Scalar]
+	}
+
+	if t.Map != nil {
+		return fmt.Sprintf("map<%s, %s>", t.Map.Key.Output(), t.Map.Value.Output())
 	}
 
 	return "unknown Type output\n"
