@@ -28,5 +28,17 @@ func (v *Value) Output() string {
 		return fmt.Sprintf("float64 %s \n", *v.String)
 	}
 
+	if v.Int != nil {
+		return fmt.Sprintf("int64 %s \n", *v.String)
+	}
+
+	if v.Bool != nil {
+		return fmt.Sprintf("bool %t \n", *v.Bool)
+	}
+
+	// if v.Map != nil {
+	// 	return v.Map.Output()
+	// }
+
 	return "undefined value \n"
 }

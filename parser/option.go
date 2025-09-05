@@ -15,5 +15,10 @@ type Option struct {
 }
 
 func (o *Option) Output() string {
-	return fmt.Sprintf("option %s = %v", o.Name, o.Value)
+	if o.Attr != nil {
+		fmt.Println("[UNKNOWN]option attr:", *o.Attr)
+		return fmt.Sprintf("option %s.%s = [%v]", o.Name, *o.Attr, *o.Value)
+	}
+	// fmt.Println("option name:", o.Name, *o.Value, o.Attr)
+	return fmt.Sprintf("option %s = [%v]", o.Name, o.Value.Output())
 }

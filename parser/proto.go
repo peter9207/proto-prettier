@@ -134,7 +134,7 @@ func Parse(data io.Reader) (p *Proto, err error) {
 
 	proto, err := parser.Parse("", data)
 
-	fmt.Println(proto.Output())
+	// fmt.Println(proto.Output())
 	p = proto
 	return
 }

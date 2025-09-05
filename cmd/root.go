@@ -1,18 +1,15 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
-	"os"
 	"fmt"
+	"os"
 
-	"github.com/spf13/cobra"
 	"github.com/peter9207/proto-prettier/parser"
+	"github.com/spf13/cobra"
 )
-
-
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -28,7 +25,7 @@ to quickly create a Cobra application.`,
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
 
-		if(len(args) == 0){
+		if len(args) == 0 {
 			cmd.Help()
 			return
 		}
@@ -45,10 +42,12 @@ to quickly create a Cobra application.`,
 			panic(err)
 		}
 
-		fmt.Println(p)
+		result := p.Output()
+		fmt.Println("======================")
+		fmt.Println(result)
 		// parser.Parse(content)
 
-	 },
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -71,5 +70,3 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-

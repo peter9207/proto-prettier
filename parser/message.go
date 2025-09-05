@@ -20,7 +20,7 @@ type Message struct {
 func (m *Message) Output() string {
 	entries := []string{}
 
-	start := fmt.Sprintf("message %s { \n ", m.Name)
+	start := fmt.Sprintf("message %s {\n", m.Name)
 
 	entries = append(entries, start)
 
